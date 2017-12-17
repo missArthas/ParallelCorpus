@@ -16,3 +16,4 @@ __ConfigTemp/
 *.log
 *.DS_Store
 extensions/**/build/
+websites/
