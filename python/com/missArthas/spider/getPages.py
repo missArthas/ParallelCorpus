@@ -1,4 +1,4 @@
-from com.missArthas.BaiduSearch import BaiduSearch
+from com.tools.BaiduSearch import BaiduSearch
 
 object=BaiduSearch()
 urls,titles=object.search('site:www.beeden.com inurl: ( "/zh-cn/" )',1)
