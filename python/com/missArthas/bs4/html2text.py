@@ -1,13 +1,30 @@
 #coding=utf-8
 from bs4 import BeautifulSoup
+import os
 
-basepath = '/Users/nali/github/ParallelCorpus/websites/www.edb.gov.hk/'
-soup1 = BeautifulSoup(open(basepath + 'sc/index.html'),'lxml')
-print(soup1.title)
-for string in soup1.body.stripped_strings:
-    print(repr(string))
 
-soup2 = BeautifulSoup(open(basepath + 'en/index.html'),'lxml')
-print(soup2.title)
-for string in soup2.body.stripped_strings:
-    print(repr(string))
+class Html2Text(object):
+
+    def html2Text(self, enpath, cnpath):
+        """
+        :type enpath: str
+        :type cnpath: str
+        :rtype: List[str]
+        """
+
+        ensoup = BeautifulSoup(open(enpath), 'lxml')
+        cnsoup = BeautifulSoup(open(cnpath), 'lxml')
+
+        enstr = ""
+        cnstr = ""
+
+        enstr = enstr + ensoup.title.getText() + '\n'
+        for string in ensoup.body.stripped_strings:
+            enstr += (string + '\n')
+
+        cnstr += cnsoup.title.getText() + '\n'
+        for string in cnsoup.body.stripped_strings:
+            cnstr += (string + '\n')
+
+        return [enstr, cnstr]
+
