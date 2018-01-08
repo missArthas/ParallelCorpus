@@ -20,7 +20,7 @@ cnfile = open(savepath + 'cn/' + fileNum, 'w+')
 soup1 = BeautifulSoup(open(webpath + enpath + 'index.html'),'lxml')
 print(soup1.title)
 for string in soup1.body.stripped_strings:
-    enfile.write(string + '\n')
+    (string + '\n')
     print(repr(string))
 enfile.close()
 
