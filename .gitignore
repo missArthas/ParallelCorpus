@@ -17,3 +17,4 @@ __ConfigTemp/
 *.DS_Store
 extensions/**/build/
 websites/
+texts/
