@@ -3,6 +3,7 @@
 import os
 import chardet
 from bs4 import BeautifulSoup
+import glob
 from com.missArthas.bs4.Html2Text import Html2Text
 
 class PairFinder(object):
@@ -24,12 +25,12 @@ class PairFinder(object):
     def __init__(self, path):
         self.basepath = path
 
-    def slashPathSearch(self, readPath, savePath, enFlag, cnFlag):
+    def slashPathSearch(self, readPath, savePath, enFlag, cnFlag, count):
         """
         :param readPath: /Users/nali/github/ParallelCorpus/websites/www.edb.edu.hk
         :param savePath: /Users/nali/github/ParallelCorpus/texts/www.edb.edu.hk
-        :param enFlag:  /en/
-        :param cnFlag: /zh/
+        :param enFlag:  en
+        :param cnFlag: zh
         :return:
         """
         savepath =  savePath
@@ -50,7 +51,7 @@ class PairFinder(object):
             for fl in files:
                 cnpath = root + "/" + fl
                 enpath = ""
-                if cnpath.find(cnFlag) != -1:
+                if cnpath.find("/"+cnFlag+"/") != -1:
                     enpath = cnpath.replace(cnFlag, enFlag)
                 total += 1
                 if os.path.exists(enpath) and os.path.isfile(enpath):
@@ -77,16 +78,15 @@ class PairFinder(object):
                         cnsoup = BeautifulSoup(open(cnpath), 'lxml')
                         strs = html2Text.html2Text(ensoup, cnsoup)
 
-                        fileNum = str(count) + '.txt'
+                        fileNum = str(count)
                         print(fileNum)
 
-                        if not os.path.exists(savepath + enFlag):
-                            os.mkdir(savepath + enFlag)
-                        if not os.path.exists(savepath + cnFlag):
-                            os.mkdir(savepath + cnFlag)
+                        encnDir = savepath + "/"+ enFlag+";"+cnFlag+"/"
+                        if not os.path.exists(encnDir):
+                            os.mkdir(encnDir)
 
-                        enfile = open(savepath + enFlag + fileNum, 'w+')
-                        cnfile = open(savepath + cnFlag + fileNum, 'w+')
+                        enfile = open(encnDir + fileNum+";"+enFlag+".txt", 'w+')
+                        cnfile = open(encnDir + fileNum+";"+cnFlag+".txt", 'w+')
 
                         enfile.write(strs[0])
                         enfile.close()
@@ -116,9 +116,9 @@ class PairFinder(object):
                 print(filepath)
 
                 pathDir = os.listdir(filepath)
-                for enFlag in self.enSlashList:
-                    for cnFlag in self.cnSlashList:
-                        self.slashPathSearch(searchPath + dir, savePath + dir, enFlag, cnFlag)
+                for enFlag in self.enFlagList:
+                    for cnFlag in self.cnFlagList:
+                        self.slashPathSearch(searchPath + dir, savePath + dir, enFlag, cnFlag, 0)
 
     def languagePathSearch(self, readPath, savePath, enFlag, cnFlag):
         """
@@ -173,16 +173,23 @@ class PairFinder(object):
                         cnsoup = BeautifulSoup(open(cnpath), 'lxml')
                         strs = html2Text.html2Text(ensoup, cnsoup)
 
-                        fileNum = str(count) + '.txt'
+                        fileNum = str(count)
                         print(fileNum)
 
-                        if not os.path.exists(savepath + "/" + enFlag + "/"):
-                            os.mkdir(savepath + "/" + enFlag)
-                        if not os.path.exists(savepath + "/" + cnFlag + "/"):
-                            os.mkdir(savepath + "/" + cnFlag)
+                        # # if not os.path.exists(savepath + "/" + enFlag + "/"):
+                        # #     os.mkdir(savepath + "/" + enFlag)
+                        # # if not os.path.exists(savepath + "/" + cnFlag + "/"):
+                        # #     os.mkdir(savepath + "/" + cnFlag)
+                        #
+                        # enfile = open(savepath + "/" + enFlag + "/" + fileNum, 'w+')
+                        # cnfile = open(savepath + "/" + cnFlag + "/" + fileNum, 'w+')
 
-                        enfile = open(savepath + "/" + enFlag + "/" + fileNum, 'w+')
-                        cnfile = open(savepath + "/" + cnFlag + "/" + fileNum, 'w+')
+                        encnDir = savepath + "/" + enFlag + ";" + cnFlag + "/"
+                        if not os.path.exists(encnDir):
+                            os.mkdir(encnDir)
+
+                        enfile = open(encnDir + fileNum + ";" + enFlag + ".txt", 'w+')
+                        cnfile = open(encnDir + fileNum + ";" + cnFlag + ".txt", 'w+')
 
                         enfile.write(strs[0])
                         enfile.close()
@@ -225,7 +232,8 @@ print(pairFinder.basepath)
 # pairFinder.slashPathSearch('/Users/nali/github/ParallelCorpus/websites/www.edb.gov.hk',
 #                            '/Users/nali/github/ParallelCorpus/texts/www.edb.gov.hk',
 #                            '/en/', '/sc/')
-pairFinder.languageSearchAll('/Users/nali/github/ParallelCorpus/websites/', '/Users/nali/github/ParallelCorpus/texts/')
+# pairFinder.languageSearchAll('/Users/nali/github/ParallelCorpus/websites/', '/Users/nali/github/ParallelCorpus/texts/')
+pairFinder.slashSearchAll('/Users/nali/github/ParallelCorpus/websites/', '/Users/nali/github/ParallelCorpus/texts/')
 
 # enpath = '/Users/nali/github/ParallelCorpus/websites/www.interface.com.cn/index.php?option=com_imagebank&view=downloads&id=1636&Itemid=109&lang=en&task=downloadzip'
 # encodingList = ["utf-8", "gb2312", "gbk"]
