@@ -233,7 +233,19 @@ print(pairFinder.basepath)
 #                            '/Users/nali/github/ParallelCorpus/texts/www.edb.gov.hk',
 #                            '/en/', '/sc/')
 # pairFinder.languageSearchAll('/Users/nali/github/ParallelCorpus/websites/', '/Users/nali/github/ParallelCorpus/texts/')
-pairFinder.slashSearchAll('/Users/nali/github/ParallelCorpus/websites/', '/Users/nali/github/ParallelCorpus/texts/')
+
+# pairFinder.slashSearchAll('/Users/nali/github/ParallelCorpus/websites/', '/Users/nali/github/ParallelCorpus/texts/')
+pairFinder.slashPathSearch('/Users/nali/github/ParallelCorpus/websites/www.lcsd.gov.hk/',
+                           '/Users/nali/github/ParallelCorpus/texts/www.lcsd.gov.hk/','en', 'sc', 0)
+
+
+
+
+
+
+
+
+
 
 # enpath = '/Users/nali/github/ParallelCorpus/websites/www.interface.com.cn/index.php?option=com_imagebank&view=downloads&id=1636&Itemid=109&lang=en&task=downloadzip'
 # encodingList = ["utf-8", "gb2312", "gbk"]
@@ -247,3 +259,4 @@ pairFinder.slashSearchAll('/Users/nali/github/ParallelCorpus/websites/', '/Users
 #     else:
 #         print("encoding is error!\n")
 #         encodingFlag = False
+
