@@ -88,8 +88,11 @@ class PairFinder(object):
                         enfile = open(encnDir + fileNum+";"+enFlag+".txt", 'w+')
                         cnfile = open(encnDir + fileNum+";"+cnFlag+".txt", 'w+')
 
+                        enfile.write(enpath + "\n")
                         enfile.write(strs[0])
                         enfile.close()
+
+                        cnfile.write(cnpath + "\n")
                         cnfile.write(strs[1])
                         cnfile.close()
 
@@ -191,8 +194,11 @@ class PairFinder(object):
                         enfile = open(encnDir + fileNum + ";" + enFlag + ".txt", 'w+')
                         cnfile = open(encnDir + fileNum + ";" + cnFlag + ".txt", 'w+')
 
+                        enfile.write(enpath + "\n")
                         enfile.write(strs[0])
                         enfile.close()
+
+                        cnfile.write(cnpath + "\n")
                         cnfile.write(strs[1])
                         cnfile.close()
 
@@ -227,16 +233,16 @@ class PairFinder(object):
                             self.languagePathSearch(searchPath + dir, savePath + dir, language + "=" + enFlag, language + "=" + cnFlag)
 
 
-pairFinder = PairFinder('/Users/nali/github/ParallelCorpus')
-print(pairFinder.basepath)
-# pairFinder.slashPathSearch('/Users/nali/github/ParallelCorpus/websites/www.edb.gov.hk',
-#                            '/Users/nali/github/ParallelCorpus/texts/www.edb.gov.hk',
-#                            '/en/', '/sc/')
-# pairFinder.languageSearchAll('/Users/nali/github/ParallelCorpus/websites/', '/Users/nali/github/ParallelCorpus/texts/')
-
-# pairFinder.slashSearchAll('/Users/nali/github/ParallelCorpus/websites/', '/Users/nali/github/ParallelCorpus/texts/')
-pairFinder.slashPathSearch('/Users/nali/github/ParallelCorpus/websites/www.lcsd.gov.hk/',
-                           '/Users/nali/github/ParallelCorpus/texts/www.lcsd.gov.hk/','en', 'sc', 0)
+# pairFinder = PairFinder('/Users/nali/github/ParallelCorpus')
+# print(pairFinder.basepath)
+# # pairFinder.slashPathSearch('/Users/nali/github/ParallelCorpus/websites/www.edb.gov.hk',
+# #                            '/Users/nali/github/ParallelCorpus/texts/www.edb.gov.hk',
+# #                            '/en/', '/sc/')
+# # pairFinder.languageSearchAll('/Users/nali/github/ParallelCorpus/websites/', '/Users/nali/github/ParallelCorpus/texts/')
+#
+# # pairFinder.slashSearchAll('/Users/nali/github/ParallelCorpus/websites/', '/Users/nali/github/ParallelCorpus/texts/')
+# pairFinder.slashPathSearch('/Users/nali/github/ParallelCorpus/websites/www.lcsd.gov.hk/',
+#                            '/Users/nali/github/ParallelCorpus/texts/www.lcsd.gov.hk/','en', 'sc', 0)
 
 
 
