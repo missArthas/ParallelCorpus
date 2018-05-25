@@ -1,0 +1,80 @@
+#left-panel ul{
+	background-color: rgba(69,69,69,.6);
+	line-height: 2.5em;
+	padding-left:12px;
+	display: block;
+}
+#left-panel li{
+	border-bottom: 1px solid #4b4a5e;
+}
+#left-panel li a{
+	display: block;
+	color: #aaaaaa;
+	font-size: 16px;
+	letter-spacing: 2px;
+	padding-left: 20px;
+	font-weight: 600;
+	text-decoration: none;
+	-webkit-transition: all 0.25s ease;
+	-o-transition: all 0.25s ease;
+	transition: all 0.25s ease;
+}
+#left-panel .list>ul>li>a{
+	padding-left: 12px;
+}
+#left-panel ul li ul li ul li>a {
+	font-size: 14px;
+	color:#A9CDDC;
+	padding-left: 30px;
+}
+.heading{
+	color: #fff;
+    font-weight: 600;
+    letter-spacing: 4px;
+}
+.panel{
+	background-color: transparent;
+}
+.table td,th{
+	border:1px solid #ccc;
+	border-collapse:collapse;
+}
+.table th{
+	font-size:18px;
+}
+.table tbody>tr:nth-child(even),.jsgrid-row{
+	background:rgba(255,255,255,.8);
+}
+.table tbody>tr:nth-child(odd),.jsgrid-alt-row{
+	background:rgb(255,255,255);
+}
+.table tbody>tr:hover,.jsgrid-alt-row:hover,.jsgrid-row:hover{
+	background:rgb(203,242,251);
+}
+#main{
+	background-image: url(../img/bg1.jpg);
+    background-clip: border-box;
+    background-size: cover;
+    /* background: rgba(3,29,140,.1); */
+}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
+	padding: 4px 8px;
+}
+
+/** jsgrid table 样式修复 **/
+.jsgrid-alt-row>.jsgrid-cell,.jsgrid-row>.jsgrid-cell{
+	background: transparent;
+	word-break: break-all;
+	padding: 4px 8px;
+}
+.jsgrid-header-row{
+	background: #dff0d8;
+}
+.jsgrid-header-row>.jsgrid-header-cell{
+	background: none;
+	background-color: transparent;
+}
+。jsgrid-pager-container{
+	background-color: #fff;
+	border-top: 1px solid #8a8a8a;
+}

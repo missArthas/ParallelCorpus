@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns="http://www.springframework.org/schema/security"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:context="http://www.springframework.org/schema/context"
+             xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.1.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+    <http pattern="/loginPage" security="none" />
+    <http pattern="/registePage" security="none" />
+    <http pattern="/registe" security="none" />
+    <http pattern="/resources/**" security="none" />
+    <http auto-config="true">
+        <intercept-url pattern="/**" access="hasAnyRole('ROLE_USER','ROLE_MANAGER','ROLE_TRANSLATOR','ROLE_CORRECTOR')"/>
+        <form-login login-page="/loginPage" login-processing-url="/login" always-use-default-target="true"
+                    default-target-url="/" authentication-failure-url="/loginPage?error=error" />
+        <!--        <access-denied-handler error-page="/login"/>
+                <remember-me></remember-me>-->
+        <!-- 暂时关闭csrf保护 -->
+        <csrf disabled="true"/>
+    </http>
+
+
+
+    <authentication-manager>
+        <authentication-provider>
+            <jdbc-user-service data-source-ref="dataSource"
+                               users-by-username-query=
+                                       "select username,password,TRUE
+             from user
+             WHERE username=?
+            "
+                               authorities-by-username-query="
+            SELECT username,authority FROM authorities WHERE username=?"/>
+            <!--            <user-service>
+                            <user name="admin" password="admin" authorities="ROLE_USER,ROLE_ADMIN"/>
+                            <user name="test" password="test" authorities="ROLE_USER"/>
+                        </user-service>-->
+        </authentication-provider>
+    </authentication-manager>
+</beans:beans>

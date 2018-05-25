@@ -1,0 +1,15 @@
+/build/
+target/
+bin/
+src/main/webapp/**/lib/
+__ConfigTemp/
+.project
+.classpath
+.settings/
+*~
+*.orig
+*.new
+.idea/
+*.iml
+*.ipr
+extensions/**/build/
